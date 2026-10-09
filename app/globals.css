@@ -1,0 +1,336 @@
+@import "tailwindcss";
+
+/* =========================================================
+   THE BREVE HUB — DESIGN SYSTEM (v2)
+   Cream · Ink · Gold · Glass
+   ========================================================= */
+
+:root {
+  --ink: #0a0f1c;
+  --ink-soft: #1a2234;
+  --gold: #c9a14a;
+  --gold-soft: #e0bc72;
+  --cream: #faf7f1;
+  --cream-deep: #f2ecdf;
+  --paper: #ffffff;
+  --line: #ebe6dc;
+  --muted: #6b7280;
+}
+
+@theme inline {
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display), Georgia, serif;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  font-weight: 500;
+}
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.section {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80rem;
+  padding: 5rem 1.25rem;
+}
+@media (min-width: 768px) {
+  .section { padding: 7rem 2rem; }
+}
+
+.container-narrow {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 64rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 1.75rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.lead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+@media (min-width: 768px) {
+  .lead { font-size: 1.15rem; }
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 9999px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--ink);
+  box-shadow: 0 4px 14px -4px rgba(201, 161, 74, 0.5);
+}
+.btn-gold:hover {
+  background: var(--gold-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(201, 161, 74, 0.6);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: var(--cream);
+  box-shadow: 0 4px 14px -4px rgba(10, 15, 28, 0.4);
+}
+.btn-ink:hover {
+  background: var(--ink-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(10, 15, 28, 0.5);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.btn-ghost-light {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--cream);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.btn-sm { padding: 0.6rem 1.25rem; font-size: 0.82rem; }
+
+/* =========================================================
+   GLASS CARDS
+   ========================================================= */
+
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 1px 2px rgba(10, 15, 28, 0.04),
+    0 12px 40px -12px rgba(10, 15, 28, 0.12);
+}
+
+.glass-dark {
+  background: rgba(26, 34, 52, 0.55);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 12px 40px -12px rgba(0, 0, 0, 0.4);
+}
+
+.glass-nav {
+  background: rgba(250, 247, 241, 0.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(235, 230, 220, 0.6);
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 24px 48px -24px rgba(10, 15, 28, 0.15);
+  transform: translateY(-4px);
+}
+
+/* =========================================================
+   UTILITY
+   ========================================================= */
+
+.bg-cream { background-color: var(--cream); }
+.bg-cream-deep { background-color: var(--cream-deep); }
+.bg-ink { background-color: var(--ink); }
+.bg-ink-soft { background-color: var(--ink-soft); }
+.text-gold { color: var(--gold); }
+.text-ink { color: var(--ink); }
+.text-cream { color: var(--cream); }
+.text-muted { color: var(--muted); }
+.border-line { border-color: var(--line); }
+
+.gold-rule {
+  display: block;
+  width: 3rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.gold-rule-center {
+  display: block;
+  width: 3rem;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.5rem auto;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.input {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--line);
+  border-radius: 0.875rem;
+  outline: none;
+  transition: all 0.2s;
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+.input:focus {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(201, 161, 74, 0.12);
+}
+
+.input-dark {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--cream);
+}
+.input-dark:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--gold);
+}
+.input-dark::placeholder { color: rgba(250, 247, 241, 0.3); }
+
+.label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.label-light { color: rgba(250, 247, 241, 0.5); }
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+.animate-fade-up { animation: fade-up 0.9s cubic-bezier(0.4, 0, 0.2, 1) both; }
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+
+.float-slow { animation: float-slow 8s ease-in-out infinite; }
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: #d4cbb8; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
