@@ -51,7 +51,7 @@ export default async function PricingPage() {
 
       {!extras || extras.length === 0 ? (
         <Card>
-          <div className="text-sm text-slate-500">No extras configured.</Card>
+          <div className="text-sm text-slate-500">No extras configured.</div>
         </Card>
       ) : (
         <Table>
