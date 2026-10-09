@@ -1,14 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  Plus,
-  Pencil,
-  Trash2,
-  X,
-  Loader2,
-  PartyPopper,
-} from "lucide-react";
+import { Plus, Pencil, Trash2, X, Loader2, PartyPopper } from "lucide-react";
 import Button from "@/components/admin/ui/Button";
 import Badge from "@/components/admin/ui/Badge";
 import EmptyState from "@/components/admin/ui/EmptyState";
@@ -141,9 +134,7 @@ export default function EventsManager() {
                   {e.title}
                 </h3>
                 {e.host && (
-                  <div className="mt-1 text-xs text-slate-500">
-                    by {e.host}
-                  </div>
+                  <div className="mt-1 text-xs text-slate-500">by {e.host}</div>
                 )}
 
                 <div className="mt-4 flex gap-2">
@@ -175,7 +166,6 @@ export default function EventsManager() {
         </div>
       )}
 
-      {/* Modal */}
       {modal && (
         <div
           className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-slate-900/60 p-4 backdrop-blur-sm"
@@ -198,7 +188,7 @@ export default function EventsManager() {
             </div>
             <div className="p-6">
               <EventForm
-                initial={editing || undefined}
+                initial={editing ?? undefined}
                 onSaved={onSaved}
                 onCancel={closeModal}
               />

@@ -7,14 +7,14 @@ import Button from "@/components/admin/ui/Button";
 type EventRow = {
   id?: string;
   title: string;
-  description: string;
-  host: string;
+  description: string | null;
+  host: string | null;
   date: string;
-  start_time: string;
-  end_time: string;
+  start_time: string | null;
+  end_time: string | null;
   price: number;
   capacity: number | null;
-  poster_url: string;
+  poster_url: string | null;
   status: "draft" | "published" | "archived";
 };
 
@@ -40,7 +40,15 @@ export default function EventForm({
   onSaved: () => void;
   onCancel: () => void;
 }) {
-  const [form, setForm] = useState<EventRow>({ ...EMPTY, ...initial });
+  const [form, setForm] = useState<EventRow>({
+    ...EMPTY,
+    ...(initial || {}),
+    description: initial?.description ?? "",
+    host: initial?.host ?? "",
+    poster_url: initial?.poster_url ?? "",
+    start_time: initial?.start_time ?? "",
+    end_time: initial?.end_time ?? "",
+  });
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -71,9 +79,7 @@ export default function EventForm({
     setSaving(true);
     setError("");
 
-    const url = form.id
-      ? `/api/admin/events/${form.id}`
-      : "/api/admin/events";
+    const url = form.id ? `/api/admin/events/${form.id}` : "/api/admin/events";
     const method = form.id ? "PATCH" : "POST";
 
     const res = await fetch(url, {
@@ -99,7 +105,7 @@ export default function EventForm({
         </div>
       )}
 
-      {/* Poster upload */}
+      {/* Poster */}
       <div>
         <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-slate-500">
           Poster image
@@ -149,7 +155,6 @@ export default function EventForm({
         )}
       </div>
 
-      {/* Title */}
       <Field label="Title" required>
         <input
           required
@@ -160,20 +165,18 @@ export default function EventForm({
         />
       </Field>
 
-      {/* Host */}
       <Field label="Host">
         <input
-          value={form.host}
+          value={form.host ?? ""}
           onChange={(e) => set("host", e.target.value)}
           placeholder="Ibadan Tech Collective"
           className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-amber-500 focus:ring-4 focus:ring-amber-100"
         />
       </Field>
 
-      {/* Description */}
       <Field label="Description">
         <textarea
-          value={form.description}
+          value={form.description ?? ""}
           onChange={(e) => set("description", e.target.value)}
           rows={4}
           placeholder="What's this event about?"
@@ -181,7 +184,6 @@ export default function EventForm({
         />
       </Field>
 
-      {/* Date + times */}
       <div className="grid gap-4 sm:grid-cols-3">
         <Field label="Date" required>
           <input
@@ -195,7 +197,7 @@ export default function EventForm({
         <Field label="Start time">
           <input
             type="time"
-            value={form.start_time}
+            value={form.start_time ?? ""}
             onChange={(e) => set("start_time", e.target.value)}
             className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-amber-500 focus:ring-4 focus:ring-amber-100"
           />
@@ -203,14 +205,13 @@ export default function EventForm({
         <Field label="End time">
           <input
             type="time"
-            value={form.end_time}
+            value={form.end_time ?? ""}
             onChange={(e) => set("end_time", e.target.value)}
             className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-amber-500 focus:ring-4 focus:ring-amber-100"
           />
         </Field>
       </div>
 
-      {/* Price + capacity */}
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Ticket price (₦)">
           <input
@@ -233,7 +234,6 @@ export default function EventForm({
         </Field>
       </div>
 
-      {/* Status */}
       <Field label="Status">
         <select
           value={form.status}
