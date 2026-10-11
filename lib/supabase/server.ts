@@ -1,6 +1,20 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
+type CookieOptions = {
+  name: string;
+  value: string;
+  options?: {
+    domain?: string;
+    path?: string;
+    maxAge?: number;
+    expires?: Date;
+    httpOnly?: boolean;
+    secure?: boolean;
+    sameSite?: "strict" | "lax" | "none";
+  };
+};
+
 export async function createClient() {
   const cookieStore = await cookies();
 
@@ -12,10 +26,10 @@ export async function createClient() {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: CookieOptions[]) {
           try {
-            for (const { name, value, options } of cookiesToSet) {
-              cookieStore.set(name, value, options);
+            for (const cookie of cookiesToSet) {
+              cookieStore.set(cookie.name, cookie.value, cookie.options);
             }
           } catch {
             // Ignored — called from Server Component
